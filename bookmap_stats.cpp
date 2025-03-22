@@ -3,87 +3,88 @@
 
 SCDLLName("Bookmap Statistics")
 
-    /*
-     *  This study is designed to putput a csv compatible file that cloud notes in Bookmap can read using Sierra chart.
-     *
-     *  Output example:
-                    Symbol,Price Level,Note,Foreground Color,Background Color,Text Alignment,Notification Enabled,Sound Notification Enabled,Notification Is Repeatable,Delay Before Repeating,Subscribing Offset,Notification Sound
-                    ESM5.CME@RITHMIC,5653.50,IBL,#FFFFFF,#3b6b01,right,,,,,,
-                    ESM5.CME@RITHMIC,5675.75,IBH,#FFFFFF,#3b6b01,right,,,,,,
-                    ESM5.CME@RITHMIC,5662.50,onVPOC,#FFFFFF,#3b6b01,right,,,,,,
-                    ESM5.CME@RITHMIC,5668.00,VPOC,#FFFFFF,#3b6b01,right,,,,,,
-                    ESM5.CME@RITHMIC,5723.75,ethHi,#FFFFFF,#3b6b01,right,,,,,,
-                    ESM5.CME@RITHMIC,5651.25,ethLow,#FFFFFF,#3b6b01,right,,,,,,
-                    ESM5.CME@RITHMIC,5687.50,ethMid,#FFFFFF,#3b6b01,right,,,,,,
-                    ESM5.CME@RITHMIC,5714.00,yVPOC,#FFFFFF,#3b6b01,right,,,,,,
-                    ESM5.CME@RITHMIC,5765.25,yHi,#FFFFFF,#3b6b01,right,,,,,,
-                    ESM5.CME@RITHMIC,5684.50,yLow,#FFFFFF,#3b6b01,right,,,,,,
-                    ESM5.CME@RITHMIC,5716.50,pCL,#FFFFFF,#3b6b01,right,,,,,,
-                    ESM5.CME@RITHMIC,5662.75,VAL,#FFFFFF,#3b6b01,right,,,,,,
-                    ESM5.CME@RITHMIC,5672.25,VAH,#FFFFFF,#3b6b01,right,,,,,,
-                    ESM5.CME@RITHMIC,5576.75,LVN,#FFFFFF,#3b6b01,right,,,,,,
-                    ESM5.CME@RITHMIC,5579.75,HVN,#FFFFFF,#3b6b01,right,,,,,,
-                    ESM5.CME@RITHMIC,5583.50,LVN,#FFFFFF,#3b6b01,right,,,,,,
-                    ESM5.CME@RITHMIC,5592.25,HVN,#FFFFFF,#3b6b01,right,,,,,,
-                    ESM5.CME@RITHMIC,5599.75,LVN,#FFFFFF,#3b6b01,right,,,,,,
-                    ESM5.CME@RITHMIC,5602.25,HVN,#FFFFFF,#3b6b01,right,,,,,,
-                    ESM5.CME@RITHMIC,5606.00,LVN,#FFFFFF,#3b6b01,right,,,,,,
-                    ESM5.CME@RITHMIC,5607.25,HVN,#FFFFFF,#3b6b01,right,,,,,,
-                    ESM5.CME@RITHMIC,5612.00,LVN,#FFFFFF,#3b6b01,right,,,,,,
-                    ESM5.CME@RITHMIC,5617.25,HVN,#FFFFFF,#3b6b01,right,,,,,,
-                    ESM5.CME@RITHMIC,5618.50,LVN,#FFFFFF,#3b6b01,right,,,,,,
-                    ESM5.CME@RITHMIC,5631.25,HVN,#FFFFFF,#3b6b01,right,,,,,,
-                    ESM5.CME@RITHMIC,5632.50,LVN,#FFFFFF,#3b6b01,right,,,,,,
-                    ESM5.CME@RITHMIC,5642.25,HVN,#FFFFFF,#3b6b01,right,,,,,,
-                    ESM5.CME@RITHMIC,5645.75,LVN,#FFFFFF,#3b6b01,right,,,,,,
-                    ESM5.CME@RITHMIC,5659.25,HVN,#FFFFFF,#3b6b01,right,,,,,,
-                    ESM5.CME@RITHMIC,5663.00,LVN,#FFFFFF,#3b6b01,right,,,,,,
-                    ESM5.CME@RITHMIC,5670.25,HVN,#FFFFFF,#3b6b01,right,,,,,,
-                    ESM5.CME@RITHMIC,5690.00,HVN,#FFFFFF,#3b6b01,right,,,,,,
-                    ESM5.CME@RITHMIC,5694.50,LVN,#FFFFFF,#3b6b01,right,,,,,,
-                    ESM5.CME@RITHMIC,5710.00,HVN,#FFFFFF,#3b6b01,right,,,,,,
-                    ESM5.CME@RITHMIC,5724.50,LVN,#FFFFFF,#3b6b01,right,,,,,,
-                    ESM5.CME@RITHMIC,5730.00,HVN,#FFFFFF,#3b6b01,right,,,,,,
-                    ESM5.CME@RITHMIC,5737.00,LVN,#FFFFFF,#3b6b01,right,,,,,,
-                    ESM5.CME@RITHMIC,5740.00,HVN,#FFFFFF,#3b6b01,right,,,,,,
-                    ESM5.CME@RITHMIC,5741.75,LVN,#FFFFFF,#3b6b01,right,,,,,,
-                    ESM5.CME@RITHMIC,5747.75,HVN,#FFFFFF,#3b6b01,right,,,,,,
-                    ESM5.CME@RITHMIC,5767.75,LVN,#FFFFFF,#3b6b01,right,,,,,,
-                    ESM5.CME@RITHMIC,5772.25,HVN,#FFFFFF,#3b6b01,right,,,,,,
-                    ESM5.CME@RITHMIC,5782.50,LVN,#FFFFFF,#3b6b01,right,,,,,,
-                    ESM5.CME@RITHMIC,5797.25,HVN,#FFFFFF,#3b6b01,right,,,,,,
-                    ESM5.CME@RITHMIC,5802.25,HVN,#FFFFFF,#3b6b01,right,,,,,,
-                    ESM5.CME@RITHMIC,5807.50,LVN,#FFFFFF,#3b6b01,right,,,,,,
-                    ESM5.CME@RITHMIC,5812.25,HVN,#FFFFFF,#3b6b01,right,,,,,,
-                    ESM5.CME@RITHMIC,5815.00,LVN,#FFFFFF,#3b6b01,right,,,,,,
-                    ESM5.CME@RITHMIC,5821.25,HVN,#FFFFFF,#3b6b01,right,,,,,,
-                    ESM5.CME@RITHMIC,5829.75,LVN,#FFFFFF,#3b6b01,right,,,,,,
-                    ESM5.CME@RITHMIC,5835.00,LVN,#FFFFFF,#3b6b01,right,,,,,,
-                    ESM5.CME@RITHMIC,5840.25,HVN,#FFFFFF,#3b6b01,right,,,,,,
-                    ESM5.CME@RITHMIC,5843.75,LVN,#FFFFFF,#3b6b01,right,,,,,,
-                    ESM5.CME@RITHMIC,5851.25,LVN,#FFFFFF,#3b6b01,right,,,,,,
-                    ESM5.CME@RITHMIC,5858.75,HVN,#FFFFFF,#3b6b01,right,,,,,,
-                    ESM5.CME@RITHMIC,5867.25,HVN,#FFFFFF,#3b6b01,right,,,,,,
+/*
+ *  This study is designed to putput a csv compatible file that cloud notes in Bookmap can read using Sierra chart.
+ *
+ *  Output example:
+                        Symbol,Price Level,Note,Foreground Color,Background Color,Text Alignment,Notification Enabled,Sound Notification Enabled,Notification Is Repeatable,Delay Before Repeating,Subscribing Offset,Notification Sound
+                        ESM5.CME@RITHMIC,5653.50,IBL,#FFFFFF,#3b6b01,right,,,,,,
+                        ESM5.CME@RITHMIC,5675.75,IBH,#FFFFFF,#3b6b01,right,,,,,,
+                        ESM5.CME@RITHMIC,5662.50,onVPOC,#FFFFFF,#3b6b01,right,,,,,,
+                        ESM5.CME@RITHMIC,5668.00,VPOC,#FFFFFF,#3b6b01,right,,,,,,
+                        ESM5.CME@RITHMIC,5723.75,ethHi,#FFFFFF,#3b6b01,right,,,,,,
+                        ESM5.CME@RITHMIC,5651.25,ethLow,#FFFFFF,#3b6b01,right,,,,,,
+                        ESM5.CME@RITHMIC,5687.50,ethMid,#FFFFFF,#3b6b01,right,,,,,,
+                        ESM5.CME@RITHMIC,5714.00,yVPOC,#FFFFFF,#3b6b01,right,,,,,,
+                        ESM5.CME@RITHMIC,5765.25,yHi,#FFFFFF,#3b6b01,right,,,,,,
+                        ESM5.CME@RITHMIC,5684.50,yLow,#FFFFFF,#3b6b01,right,,,,,,
+                        ESM5.CME@RITHMIC,5716.50,pCL,#FFFFFF,#3b6b01,right,,,,,,
+                        ESM5.CME@RITHMIC,5662.75,VAL,#FFFFFF,#3b6b01,right,,,,,,
+                        ESM5.CME@RITHMIC,5672.25,VAH,#FFFFFF,#3b6b01,right,,,,,,
+                        ESM5.CME@RITHMIC,5576.75,LVN,#FFFFFF,#3b6b01,right,,,,,,
+                        ESM5.CME@RITHMIC,5579.75,HVN,#FFFFFF,#3b6b01,right,,,,,,
+                        ESM5.CME@RITHMIC,5583.50,LVN,#FFFFFF,#3b6b01,right,,,,,,
+                        ESM5.CME@RITHMIC,5592.25,HVN,#FFFFFF,#3b6b01,right,,,,,,
+                        ESM5.CME@RITHMIC,5599.75,LVN,#FFFFFF,#3b6b01,right,,,,,,
+                        ESM5.CME@RITHMIC,5602.25,HVN,#FFFFFF,#3b6b01,right,,,,,,
+                        ESM5.CME@RITHMIC,5606.00,LVN,#FFFFFF,#3b6b01,right,,,,,,
+                        ESM5.CME@RITHMIC,5607.25,HVN,#FFFFFF,#3b6b01,right,,,,,,
+                        ESM5.CME@RITHMIC,5612.00,LVN,#FFFFFF,#3b6b01,right,,,,,,
+                        ESM5.CME@RITHMIC,5617.25,HVN,#FFFFFF,#3b6b01,right,,,,,,
+                        ESM5.CME@RITHMIC,5618.50,LVN,#FFFFFF,#3b6b01,right,,,,,,
+                        ESM5.CME@RITHMIC,5631.25,HVN,#FFFFFF,#3b6b01,right,,,,,,
+                        ESM5.CME@RITHMIC,5632.50,LVN,#FFFFFF,#3b6b01,right,,,,,,
+                        ESM5.CME@RITHMIC,5642.25,HVN,#FFFFFF,#3b6b01,right,,,,,,
+                        ESM5.CME@RITHMIC,5645.75,LVN,#FFFFFF,#3b6b01,right,,,,,,
+                        ESM5.CME@RITHMIC,5659.25,HVN,#FFFFFF,#3b6b01,right,,,,,,
+                        ESM5.CME@RITHMIC,5663.00,LVN,#FFFFFF,#3b6b01,right,,,,,,
+                        ESM5.CME@RITHMIC,5670.25,HVN,#FFFFFF,#3b6b01,right,,,,,,
+                        ESM5.CME@RITHMIC,5690.00,HVN,#FFFFFF,#3b6b01,right,,,,,,
+                        ESM5.CME@RITHMIC,5694.50,LVN,#FFFFFF,#3b6b01,right,,,,,,
+                        ESM5.CME@RITHMIC,5710.00,HVN,#FFFFFF,#3b6b01,right,,,,,,
+                        ESM5.CME@RITHMIC,5724.50,LVN,#FFFFFF,#3b6b01,right,,,,,,
+                        ESM5.CME@RITHMIC,5730.00,HVN,#FFFFFF,#3b6b01,right,,,,,,
+                        ESM5.CME@RITHMIC,5737.00,LVN,#FFFFFF,#3b6b01,right,,,,,,
+                        ESM5.CME@RITHMIC,5740.00,HVN,#FFFFFF,#3b6b01,right,,,,,,
+                        ESM5.CME@RITHMIC,5741.75,LVN,#FFFFFF,#3b6b01,right,,,,,,
+                        ESM5.CME@RITHMIC,5747.75,HVN,#FFFFFF,#3b6b01,right,,,,,,
+                        ESM5.CME@RITHMIC,5767.75,LVN,#FFFFFF,#3b6b01,right,,,,,,
+                        ESM5.CME@RITHMIC,5772.25,HVN,#FFFFFF,#3b6b01,right,,,,,,
+                        ESM5.CME@RITHMIC,5782.50,LVN,#FFFFFF,#3b6b01,right,,,,,,
+                        ESM5.CME@RITHMIC,5797.25,HVN,#FFFFFF,#3b6b01,right,,,,,,
+                        ESM5.CME@RITHMIC,5802.25,HVN,#FFFFFF,#3b6b01,right,,,,,,
+                        ESM5.CME@RITHMIC,5807.50,LVN,#FFFFFF,#3b6b01,right,,,,,,
+                        ESM5.CME@RITHMIC,5812.25,HVN,#FFFFFF,#3b6b01,right,,,,,,
+                        ESM5.CME@RITHMIC,5815.00,LVN,#FFFFFF,#3b6b01,right,,,,,,
+                        ESM5.CME@RITHMIC,5821.25,HVN,#FFFFFF,#3b6b01,right,,,,,,
+                        ESM5.CME@RITHMIC,5829.75,LVN,#FFFFFF,#3b6b01,right,,,,,,
+                        ESM5.CME@RITHMIC,5835.00,LVN,#FFFFFF,#3b6b01,right,,,,,,
+                        ESM5.CME@RITHMIC,5840.25,HVN,#FFFFFF,#3b6b01,right,,,,,,
+                        ESM5.CME@RITHMIC,5843.75,LVN,#FFFFFF,#3b6b01,right,,,,,,
+                        ESM5.CME@RITHMIC,5851.25,LVN,#FFFFFF,#3b6b01,right,,,,,,
+                        ESM5.CME@RITHMIC,5858.75,HVN,#FFFFFF,#3b6b01,right,,,,,,
+                        ESM5.CME@RITHMIC,5867.25,HVN,#FFFFFF,#3b6b01,right,,,,,,
 
-     *
-     *  To use this study you will need to move it to Sierra's ACS directory and compile it.
-     *
-     *  This requires using a VB TPO chart, you will need to go into settings of the study and enter the TPO ID of the study,   In my config,
-     *  I have ES chart as the TPO, then VbP for TPO chart as #2 and this bookmap study as #3.
-     *
-     *  The TPO chart must have both evening and day sessions configured, as the output depends on both.   The VPO indicator is desgined to show a list of HVNs and
-     *  LVNs.
-     *
-     *  You wil need to set in the settings the name for the output csv file for the instrument.  eg  ESM5.CME@RITHMIC.
-     *  You will need to change the settings in write_csv to the right path.
-     *
-     */
+ *
+ *  To use this study you will need to move it to Sierra's ACS directory and compile it.
+ *
+ *  This requires using a VB TPO chart, you will need to go into settings of the study and enter the TPO ID of the study,   In my config,
+ *  I have ES chart as the TPO, then VbP for TPO chart as #2 and this bookmap study as #3.
+ *
+ *  The TPO chart must have both evening and day sessions configured, as the output depends on both.   The VPO indicator is desgined to show a list of HVNs and
+ *  LVNs.
+ *
+ *  You wil need to set in the settings the name for the output csv file for the instrument.  eg  ESM5.CME@RITHMIC.
+ *  You will need to change the settings in write_csv to the right path.
+ *
+ */
 
-    /*
-     *  Use this file completely at your own risk.  No guarantees is implied or otherwise.
-     *
-     */
-    typedef struct
+/*
+ *  Use this file completely at your own risk.  No guarantees is implied or otherwise.
+ *
+ */
+
+ typedef struct
 {
     float value;
     unsigned int lvn_or_hvn;
@@ -351,6 +352,11 @@ SCSFExport scsf_Bookmap(SCStudyInterfaceRef sc)
     int hvn_lvn_type = 0;
     int temp_index = 0;
     int temp_index_2 = 0;
+
+    /*
+     *  Note:  to get HTF information you need to create a separate chart (TPO one will not give you HTF unfortunately)
+     *  and specify the chart number below (1 in my case) and the study number (3 in my case) to use Volume by Price studies.
+     */
     while (hvn_lvn_index < MAX_HTF_HVN_LVN)
     {
         ret = sc.GetStudyPeakValleyLine(/*sc.ChartNumber*/ 1, 3 /*Input_HTF_Index.GetInt()*/, price, hvn_lvn_type,
