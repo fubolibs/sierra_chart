@@ -4,7 +4,7 @@
 SCDLLName("Bookmap Statistics")
 
 /*
- *  This study is designed to putput a csv compatible file that cloud notes in Bookmap can read using Sierra chart.
+ *  This study is designed to output a CSV-compatible file that cloud notes in Bookmap can read using Sierra Chart.
  *
  *  Output example:
                         Symbol,Price Level,Note,Foreground Color,Background Color,Text Alignment,Notification Enabled,Sound Notification Enabled,Notification Is Repeatable,Delay Before Repeating,Subscribing Offset,Notification Sound
@@ -71,20 +71,20 @@ SCDLLName("Bookmap Statistics")
  *  This requires using a VB TPO chart, you will need to go into settings of the study and enter the TPO ID of the study,   In my config,
  *  I have ES chart as the TPO, then VbP for TPO chart as #2 and this bookmap study as #3.
  *
- *  The TPO chart must have both evening and day sessions configured, as the output depends on both.   The VPO indicator is desgined to show a list of HVNs and
- *  LVNs.
+ *  The TPO chart must have both evening and day sessions configured, as the output depends on both. The VbP indicator
+ *  is designed to show a list of HVNs and LVNs.
  *
- *  You wil need to set in the settings the name for the output csv file for the instrument.  eg  ESM5.CME@RITHMIC.
- *  You will need to change the settings in write_csv to the right path.
+ *  You will need to set in the settings the name for the output CSV file for the instrument (e.g. ESM5.CME@RITHMIC).
+ *  You will need to change the path in write_csv to match your environment.
  *
  */
 
 /*
- *  Use this file completely at your own risk.  No guarantees is implied or otherwise.
+ *  Use this file completely at your own risk. No guarantees are implied or otherwise.
  *
  */
 
- typedef struct
+typedef struct
 {
     float value;
     unsigned int lvn_or_hvn;
@@ -110,9 +110,9 @@ void write_csv(SCStudyInterfaceRef &sc, const char *symbol, float ibl, float ibh
     int FileHandle = 0;
     unsigned int BytesWritten;
 
-    // Replace PathAndFileName with your path that you desire
     const char *header = "Symbol,Price Level,Note,Foreground Color,Background Color,Text Alignment,Notification Enabled,Sound Notification Enabled,Notification Is Repeatable,Delay Before Repeating,Subscribing Offset,Notification Sound\r\n";
-    SCString PathAndFileName = "C:\\Users\\<USER>\\Documents\\tinyserver\\cn.csv"; // sc.DataFilesFolder();
+    // Update this path for your environment before compiling
+    SCString PathAndFileName = "C:\\Users\\<USER>\\Documents\\tinyserver\\cn.csv";
     sc.OpenFile(PathAndFileName, n_ACSIL::FILE_MODE_CREATE_AND_OPEN_FOR_READ_WRITE, FileHandle);
     SCString Data;
     Data += header;
@@ -126,7 +126,7 @@ void write_csv(SCStudyInterfaceRef &sc, const char *symbol, float ibl, float ibh
     set_str_element(Data, in_str, symbol, "ethLow", eth_low);
     set_str_element(Data, in_str, symbol, "ethMid", eth_mid); // IBL.Clear();
     set_str_element(Data, in_str, symbol, "yVPOC", yvpoc);
-    set_str_element(Data, in_str, symbol, "yHi", prev_high); // IBL.Clear();
+    set_str_element(Data, in_str, symbol, "yHi", prev_high);
     set_str_element(Data, in_str, symbol, "yLow", prev_low);
     set_str_element(Data, in_str, symbol, "pCL", prev_cl);
     set_str_element(Data, in_str, symbol, "VAL", val);
@@ -144,10 +144,7 @@ void write_csv(SCStudyInterfaceRef &sc, const char *symbol, float ibl, float ibh
             set_str_element(Data, in_str, symbol, "HVN", g_hvn_lvn[i].value);
         }
     }
-    // IBL.AppendFormat(symbol);
-    // IBL.AppendFormat(",%.2f,IBL,#FFFFFF,#3b6b01,right,,,,,,\r\n", ibl);
 
-    // Data += in_str;
     sc.WriteFile(FileHandle, Data.GetChars(), Data.GetLength(), &BytesWritten);
     sc.CloseFile(FileHandle);
 }
@@ -319,7 +316,7 @@ SCSFExport scsf_Bookmap(SCStudyInterfaceRef sc)
     SCDateTime StartTimeOfEveningSession;
     StartTimeOfEveningSession.SetTime(sc.StartTime2);
 
-    /* if index 0 is evening session*/
+    /* If index 0 is evening session */
     if (info_0_date_time.GetHour() == StartTimeOfEveningSession.GetHour())
     {
         eth_high = Subgraph_EthHigh[sc.Index] = info_0.m_HighestPrice;
@@ -354,8 +351,8 @@ SCSFExport scsf_Bookmap(SCStudyInterfaceRef sc)
     int temp_index_2 = 0;
 
     /*
-     *  Note:  to get HTF information you need to create a separate chart (TPO one will not give you HTF unfortunately)
-     *  and specify the chart number below (1 in my case) and the study number (3 in my case) to use Volume by Price studies.
+     * Note: To get HTF information you need a separate chart (TPO will not give HTF). The first parameter (1) is
+     * the HTF chart number; the study number comes from Input_HTF_Index. Uses Volume by Price for HVN/LVN detection.
      */
     while (hvn_lvn_index < MAX_HTF_HVN_LVN)
     {
